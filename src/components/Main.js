@@ -2,7 +2,6 @@ import React from 'react';
 import Loader from './Loader';
 import Card from './Card';
 import CurrentUserContext from '../contexts/CurrentUserContext';
-import Login from './Login';
 
 function Main(props) {
   const currentUser = React.useContext(CurrentUserContext);
@@ -10,8 +9,6 @@ function Main(props) {
   return (
     <main className="content">
       {props.isLoading && (<Loader />)}
-
-      <Login />
 
       <section className={`profile page__section page__section_place_profile ${props.isLoading && "page__section_hidden"}`}>
         <div className="profile__avatar-wrap">

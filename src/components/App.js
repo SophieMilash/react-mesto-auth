@@ -1,4 +1,6 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import ProtectedRoute from './ProtectedRoute';
 import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
@@ -8,6 +10,8 @@ import AddPlacePopup from './AddPlacePopup';
 import ImagePopup from './ImagePopup';
 import DeletionConfirmPopup from './DeletionConfirmPopup';
 import CurrentUserContext from '../contexts/CurrentUserContext';
+import Register from './Register';
+import Login from './Login';
 import api from '../utils/api.js';
 
 function App() {
@@ -25,6 +29,7 @@ function App() {
   const [cardDelete, setCardDelete] = React.useState({});
   const [isLoading, setIsLoading] = React.useState(false);
   const [isFormLoading, setIsFormLoading] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(false);
 
   React.useEffect(() => {
     setIsLoading(true);
@@ -162,13 +167,55 @@ function App() {
     <>
       <CurrentUserContext.Provider value={currentUser}>
         <Header />
-        <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddCard={handleAddCardClick} onCardClick={handleCardClick} cards={cards} isLoading={isLoading} onCardLike={handleCardLike} onCardDelete={handleCardDelete} setCardDelete={setCardDelete}/>
+        <Switch>
+          <ProtectedRoute exact path="/" loggedIn={loggedIn} component={Main}
+            onEditAvatar={handleEditAvatarClick}
+            onEditProfile={handleEditProfileClick}
+            onAddCard={handleAddCardClick}
+            onCardClick={handleCardClick}
+            cards={cards}
+            isLoading={isLoading}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
+            setCardDelete={setCardDelete}
+          />
+          <Route path="/sign-up">
+            <Register />
+          </Route>
+          <Route path="/sign-in">
+            <Login />
+          </Route>
+        </Switch>
         <Footer />
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} isFormLoading={isFormLoading} />
-        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} isFormLoading={isFormLoading}/>
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddCard={handleAddCardSubmit} isFormLoading={isFormLoading} />
-        <ImagePopup card={selectedCard !== null && selectedCard} onClose={closeAllPopups} />
-        <DeletionConfirmPopup isOpen={isDeletionConfirmPopup} onClose={closeAllPopups} onConfirmDeletion={handleDeletionConfirmClick} isFormLoading={isFormLoading}/>
+
+        <EditProfilePopup
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
+          isFormLoading={isFormLoading}
+        />
+        <EditAvatarPopup
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
+          isFormLoading={isFormLoading}
+        />
+        <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          onAddCard={handleAddCardSubmit}
+          isFormLoading={isFormLoading}
+        />
+        <ImagePopup
+          card={selectedCard !== null && selectedCard}
+          onClose={closeAllPopups}
+        />
+        <DeletionConfirmPopup
+          isOpen={isDeletionConfirmPopup}
+          onClose={closeAllPopups}
+          onConfirmDeletion={handleDeletionConfirmClick}
+          isFormLoading={isFormLoading}
+        />
       </CurrentUserContext.Provider>
     </>
   );
