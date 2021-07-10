@@ -1,0 +1,6 @@
+.card__like-wrap {
+  margin-left: 19px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

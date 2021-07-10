@@ -1,0 +1,6 @@
+.dots-loader {
+  margin-left: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}

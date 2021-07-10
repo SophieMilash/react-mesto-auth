@@ -1,0 +1,11 @@
+.card__info {
+  margin: 0;
+  padding: 25px 19px 28px 21px;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,0 +1,16 @@
+.button {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: .2s linear;
+  outline: 0;
+}
+
+.button:hover {
+  opacity: .6;
+}
+
+.button:disabled {
+  pointer-events: none;
+  user-select: none;
+}

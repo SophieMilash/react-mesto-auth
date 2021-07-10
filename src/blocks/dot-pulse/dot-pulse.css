@@ -1,0 +1,17 @@
+@keyframes dot-pulse {
+  0% {
+    transform: none;
+  }
+
+  30% {
+    transform: translateY(-4px);
+  }
+
+  70% {
+    transform: none;
+  }
+}
+
+/* .dot-pulse {
+
+} */

@@ -1,0 +1,9 @@
+.page__section_place_cards {
+  margin-top: 50px;
+}
+
+@media screen and (max-width: 767px) {
+  .page__section_place_cards {
+    margin-top: 36px;
+  }
+}
