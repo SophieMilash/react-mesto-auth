@@ -1,0 +1,26 @@
+.authorization__input {
+  margin-top: 30px;
+  padding: 2px 0 10px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  border-bottom: 2px solid #ccc;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.authorization__input:first-of-type {
+  margin-top: 0;
+}
+
+.authorization__input::placeholder {
+  color: #ccc;
+}
+
+.authorization__input:focus {
+  outline: 1px solid rgba(255, 255, 255, 0.8);
+}

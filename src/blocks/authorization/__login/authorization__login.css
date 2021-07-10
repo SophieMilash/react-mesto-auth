@@ -1,0 +1,14 @@
+.authorization__login {
+  margin-top: 15px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
+  text-align: center;
+  color: #fff;
+}
+
+@media screen and (max-width: 575px) {
+  .authorization__login {
+    margin-top: 20px;
+  }
+}

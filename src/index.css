@@ -66,4 +66,12 @@
 @import url('./blocks/dots-loader/dots-loader.css');
 @import url('./blocks/dots-loader/__dot/dots-loader__dot.css');
 @import url('./blocks/dot-pulse/dot-pulse.css');
-
+/* authorization */
+@import url('./blocks/authorization/authorization.css');
+@import url('./blocks/authorization/__form/authorization__form.css');
+@import url('./blocks/authorization/__title/authorization__title.css');
+@import url('./blocks/authorization/__input/authorization__input.css');
+@import url('./blocks/authorization/__button/authorization__button.css');
+@import url('./blocks/authorization/__login/authorization__login.css');
+@import url('./blocks/authorization/__login-paragraph/authorization__login-paragraph.css');
+@import url('./blocks/authorization/__login-link/authorization__login-link.css');
