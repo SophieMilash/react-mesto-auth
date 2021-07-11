@@ -3,7 +3,6 @@
   height: 40px;
   background: url('../../../images/plus.svg') center center/contain no-repeat;
   transform: rotate(45deg);
-  border: none;
   position: absolute;
   top: -40px;
   right: -40px;

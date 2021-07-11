@@ -9,6 +9,7 @@ import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import ImagePopup from './ImagePopup';
 import DeletionConfirmPopup from './DeletionConfirmPopup';
+import InfoTooltip from './InfoTooltip';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import Register from './Register';
 import Login from './Login';
@@ -19,6 +20,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isDeletionConfirmPopup, setDeletionConfirmPopup] = React.useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState({
     name: '',
@@ -92,12 +94,21 @@ function App() {
     setDeletionConfirmPopup(true);
   }
 
+  function handleCardDelete() {
+    setDeletionConfirmPopup(true);
+  }
+
+  // function handleAuthorization() {
+  //   setIsInfoTooltipOpen(true);
+  // }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setDeletionConfirmPopup(false);
     setSelectedCard(null);
+    setIsInfoTooltipOpen(false);
   }
 
   function handleUpdateUser({ name, about }) {
@@ -215,6 +226,11 @@ function App() {
           onClose={closeAllPopups}
           onConfirmDeletion={handleDeletionConfirmClick}
           isFormLoading={isFormLoading}
+        />
+        <InfoTooltip
+          isOpen={isInfoTooltipOpen}
+          onClose={closeAllPopups}
+          message={'Что-то пошло не так! Попробуйте ещё раз.'}
         />
       </CurrentUserContext.Provider>
     </>
