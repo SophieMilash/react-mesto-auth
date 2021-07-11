@@ -1,0 +1,14 @@
+.header__burger {
+  display: none;
+}
+
+@media screen and (max-width: 575px) {
+  .header__burger {
+    display: block;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

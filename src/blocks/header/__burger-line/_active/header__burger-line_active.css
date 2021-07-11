@@ -1,0 +1,14 @@
+.header__burger-line_active:first-of-type {
+  margin: 0;
+  top: 0;
+  transform: translateY(1.5px) rotate(45deg);
+}
+
+.header__burger-line_active:nth-child(2) {
+  display: none;
+}
+
+.header__burger-line_active:last-of-type {
+  bottom: 0;
+  transform: translateY(-1.5px) rotate(-45deg);
+}

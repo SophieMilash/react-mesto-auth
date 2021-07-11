@@ -1,0 +1,22 @@
+.header__info-wrap {
+  order: 2;
+}
+
+@media screen and (max-width: 767px) {
+  .header__info-wrap {
+    margin-right: 30px;
+  }
+}
+
+
+@media screen and (max-width: 575px) {
+  .header__info-wrap {
+    order: 0;
+    width: 100%;
+    padding-bottom: 40px;
+    margin-right: 0;
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 1px solid rgba(84, 84, 84, .7);
+  }
+}

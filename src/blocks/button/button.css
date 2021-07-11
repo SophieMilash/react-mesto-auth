@@ -4,6 +4,8 @@
   cursor: pointer;
   transition: .2s linear;
   outline: 0;
+  background-color: transparent;
+  border: none;
 }
 
 .button:hover {
