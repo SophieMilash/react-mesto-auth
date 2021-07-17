@@ -94,10 +94,6 @@ function App() {
     setDeletionConfirmPopup(true);
   }
 
-  function handleCardDelete() {
-    setDeletionConfirmPopup(true);
-  }
-
   // function handleAuthorization() {
   //   setIsInfoTooltipOpen(true);
   // }
@@ -174,6 +170,10 @@ function App() {
       .finally(() => setIsFormLoading(false));
   }
 
+  function handleLogin(e) {
+    setLoggedIn(true);
+  }
+
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>
@@ -194,7 +194,7 @@ function App() {
             <Register />
           </Route>
           <Route path="/sign-in">
-            <Login />
+            <Login handleLogin={handleLogin} />
           </Route>
         </Switch>
         <Footer />

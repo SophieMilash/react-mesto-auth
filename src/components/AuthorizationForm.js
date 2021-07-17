@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function AuthorizationForm(props) {
   return (
     <section className="authorization">
-      <form className="form" name={props.name} noValidate >
+      <form className="form" onSubmit={props.onSubmit} name={props.name} noValidate >
         <fieldset className={`authorization__form`}>
           <legend className="authorization__title">{props.title}</legend>
           {props.children}
