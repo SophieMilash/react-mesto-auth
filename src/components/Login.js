@@ -7,8 +7,7 @@ function Login(props) {
   const [password, setPassword] = React.useState('');
   const [emailValidityError, setEmailValidityError] = React.useState('');
   const [passwordValidityError, setPasswordValidityError] = React.useState('');
-  // const [isSubmitDisabled, setIsSubmitDisabled] = React.useState(true);
-  const isSubmitDisabled = emailValidityError || passwordValidityError;
+  const isSubmitDisabled = (emailValidityError || email === '') || (passwordValidityError || password === '');
 
   function handleEmailChange(e) {
     const emailInput = e.target;
@@ -23,14 +22,6 @@ function Login(props) {
       setEmailValidityError(validationMessage);
     }
   }
-
-  // function checkSubmitDisabled() {
-  //   if (emailValidityError || passwordValidityError) {
-  //     setIsSubmitDisabled(true);
-  //   } else {
-  //     setIsSubmitDisabled(false);
-  //   }
-  // }
 
   function handlePasswordChange(e) {
     const passwordInput = e.target;
@@ -61,12 +52,11 @@ function Login(props) {
       .catch(err => console.log(err));
   }
 
-
   return (
     <AuthorizationForm onSubmit={handleSubmit} isSubmitDisabled={isSubmitDisabled} name="login" title="Вход" buttonText="Войти">
-      <input type="email" name="email" value={email} onChange={handleEmailChange} required className="authorization__input" placeholder="E-mail" />
+      <input type="email" name="email" value={email} onChange={handleEmailChange} required className="authorization__input" placeholder="E-mail" autoComplete="on" />
       {emailValidityError && <span className="form__input-error">{emailValidityError}</span>}
-      <input type="password" name="current-password" value={password} onChange={handlePasswordChange} required minLength="6" className="authorization__input" placeholder="Пароль" />
+      <input type="password" name="current-password" value={password} onChange={handlePasswordChange} required minLength="6" className="authorization__input" placeholder="Пароль" autoComplete="on" />
       {passwordValidityError && <span className="form__input-error">{passwordValidityError}</span>}
     </AuthorizationForm>
   )

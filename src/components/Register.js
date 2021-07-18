@@ -8,9 +8,8 @@ function Register(props) {
   const [password, setPassword] = React.useState('');
   const [emailValidityError, setEmailValidityError] = React.useState('');
   const [passwordValidityError, setPasswordValidityError] = React.useState('');
-  // const [isSubmitDisabled, setIsSubmitDisabled] = React.useState(true);
-  const isSubmitDisabled = emailValidityError || passwordValidityError;
   const history = useHistory();
+  const isSubmitDisabled = (emailValidityError || email === '') || (passwordValidityError || password === '');
 
   function handleEmailChange(e) {
     const emailInput = e.target;
@@ -58,9 +57,9 @@ function Register(props) {
 
   return (
     <AuthorizationForm onSubmit={handleSubmit} isSubmitDisabled={isSubmitDisabled} name="register" title="Регистрация" buttonText="Зарегистрироваться">
-      <input type="email" name="email" value={email} onChange={handleEmailChange} required className="authorization__input" placeholder="E-mail" />
+      <input type="email" name="email" value={email} onChange={handleEmailChange} required className="authorization__input" placeholder="E-mail" autoComplete="on" />
       {emailValidityError && <span className="form__input-error">{emailValidityError}</span>}
-      <input type="password" name="password" value={password} onChange={handlePasswordChange} required className="authorization__input" placeholder="Пароль" minLength="6" />
+      <input type="password" name="password" value={password} onChange={handlePasswordChange} required className="authorization__input" placeholder="Пароль" minLength="6" autoComplete="on" />
       {passwordValidityError && <span className="form__input-error">{passwordValidityError}</span>}
     </AuthorizationForm>
   )

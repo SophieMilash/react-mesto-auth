@@ -12,7 +12,7 @@ function Header(props) {
     window.addEventListener('resize', () => {
       switchClass();
     });
-  }, []);
+  });
 
   function switchClass() {
     menu.switchClass();

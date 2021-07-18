@@ -6,7 +6,14 @@ function AddPlacePopup(props) {
   const [link, setLink] = React.useState('');
   const [cardTitleValidityError, setCardTitleValidityError] = React.useState('');
   const [cardLinkValidityError, setCardLinkValidityError] = React.useState('');
-  const isSubmitDisabled = cardTitleValidityError || cardLinkValidityError;
+  const isSubmitDisabled = (cardTitleValidityError || name === '') || (cardLinkValidityError || link === '');
+
+  React.useEffect(() => {
+    setName('');
+    setLink('');
+    setCardTitleValidityError('');
+    setCardLinkValidityError('');
+  }, [props.isOpen]);
 
   function handleNameChange(e) {
     const cardTitleInput = e.target;
@@ -44,13 +51,6 @@ function AddPlacePopup(props) {
       link: link
     });
   }
-
-  React.useEffect(() => {
-    setName('');
-    setLink('');
-    setCardTitleValidityError('');
-    setCardLinkValidityError('');
-  }, [props.onClose]);
 
   return (
     <PopupWithForm name="add-card" title="Новое место" buttonText="Создать" isOpen={props.isOpen} onClose={props.onClose} onSubmit={handleSubmit} isFormLoading={props.isFormLoading} isSubmitDisabled={isSubmitDisabled} >

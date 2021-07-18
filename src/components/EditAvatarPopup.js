@@ -4,7 +4,12 @@ import PopupWithForm from './PopupWithForm';
 function EditAvatarPopup(props) {
   const [avatar, setAvatar] = React.useState('');
   const [avatarValidityError, setAvatarValidityError] = React.useState('');
-  const isSubmitDisabled = avatarValidityError;
+  const isSubmitDisabled = avatarValidityError || avatar === '';
+
+  React.useEffect(() => {
+    setAvatar('');
+    setAvatarValidityError('');
+  }, [props.isOpen]);
 
   function handleAvatarChange(e) {
     const avatarInput = e.target;
@@ -27,11 +32,6 @@ function EditAvatarPopup(props) {
       avatar: avatar
     });
   }
-
-  React.useEffect(() => {
-    setAvatar('');
-    setAvatarValidityError('');
-  }, [props.onClose]);
 
   return (
     <PopupWithForm name="avatar-edit" title="Обновить аватар" buttonText="Сохранить" isOpen={props.isOpen} onClose={props.onClose} onSubmit={handleSubmit} isFormLoading={props.isFormLoading} isSubmitDisabled={isSubmitDisabled} >

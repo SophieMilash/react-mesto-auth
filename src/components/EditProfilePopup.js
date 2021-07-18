@@ -8,7 +8,7 @@ function EditProfilePopup(props) {
   const [description, setDescription] = React.useState('');
   const [nameValidityError, setNameValidityError] = React.useState('');
   const [descriptionValidityError, setDescriptionValidityError] = React.useState('');
-  const isSubmitDisabled = nameValidityError || descriptionValidityError;
+  const isSubmitDisabled = (nameValidityError || name === '') || (descriptionValidityError || description === '');
 
   React.useEffect(() => {
     setName(currentUser.name);
