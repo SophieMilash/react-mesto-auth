@@ -66,7 +66,7 @@ function Login(props) {
     <AuthorizationForm onSubmit={handleSubmit} isSubmitDisabled={isSubmitDisabled} name="login" title="Вход" buttonText="Войти">
       <input type="email" name="email" value={email} onChange={handleEmailChange} required className="authorization__input" placeholder="E-mail" />
       {emailValidityError && <span className="form__input-error">{emailValidityError}</span>}
-      <input type="password" name="password" value={password} onChange={handlePasswordChange} required minLength="6" className="authorization__input" placeholder="Пароль" />
+      <input type="password" name="current-password" value={password} onChange={handlePasswordChange} required minLength="6" className="authorization__input" placeholder="Пароль" />
       {passwordValidityError && <span className="form__input-error">{passwordValidityError}</span>}
     </AuthorizationForm>
   )

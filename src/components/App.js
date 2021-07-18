@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
+import successIcon from '../images/success.svg';
+import errorIcon from '../images/error.svg';
 import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
@@ -34,6 +36,8 @@ function App() {
   const [isFormLoading, setIsFormLoading] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [userEmail, setUserEmail] = React.useState('');
+  const [registrationMessage, setRegistrationMessage] = React.useState('');
+  const [registrationIcon, setRegistrationIcon] = React.useState(null);
   const history = useHistory();
 
   React.useEffect(() => {
@@ -104,10 +108,6 @@ function App() {
   function handleCardDelete() {
     setDeletionConfirmPopup(true);
   }
-
-  // function handleAuthorization() {
-  //   setIsInfoTooltipOpen(true);
-  // }
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
@@ -194,12 +194,30 @@ function App() {
     localStorage.removeItem('jwt');
   }
 
+  function handleRegistrationSuccess() {
+    setIsInfoTooltipOpen(true);
+    setRegistrationIcon(successIcon);
+    setRegistrationMessage('Вы успешно зарегистрировались!');
+  }
+
+  function handleRegistrationError() {
+    setIsInfoTooltipOpen(true);
+    setRegistrationIcon(errorIcon);
+    setRegistrationMessage('Что-то пошло не так! Попробуйте ещё раз.');
+  }
+
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>
         <Header loggedIn={loggedIn} onSignOut={handleSignOut} email={userEmail} />
         <Switch>
-          <ProtectedRoute exact path="/" loggedIn={loggedIn} component={Main}
+          <Route path="/sign-up">
+            <Register onRegistrationSuccess={handleRegistrationSuccess} onRegistrationError={handleRegistrationError} />
+          </Route>
+          <Route path="/sign-in">
+            <Login onLogin={handleLogin} />
+          </Route>
+          <ProtectedRoute path="/" loggedIn={loggedIn} component={Main}
             onEditAvatar={handleEditAvatarClick}
             onEditProfile={handleEditProfileClick}
             onAddCard={handleAddCardClick}
@@ -210,12 +228,6 @@ function App() {
             onCardDelete={handleCardDelete}
             setCardDelete={setCardDelete}
           />
-          <Route path="/sign-up">
-            <Register />
-          </Route>
-          <Route path="/sign-in">
-            <Login onLogin={handleLogin} />
-          </Route>
         </Switch>
         <Footer />
 
@@ -250,7 +262,8 @@ function App() {
         <InfoTooltip
           isOpen={isInfoTooltipOpen}
           onClose={closeAllPopups}
-          message={'Что-то пошло не так! Попробуйте ещё раз.'}
+          message={registrationMessage}
+          icon={registrationIcon}
         />
       </CurrentUserContext.Provider>
     </>

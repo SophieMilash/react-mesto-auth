@@ -5,7 +5,6 @@ import headerLogo from '../images/logo.svg';
 import * as menu from '../utils/menu.js';
 
 function Header(props) {
-  const email = props.email;
   const [mobileResolution, setMobileResolution] = React.useState(false);
   const location = useLocation();
   const mobileWidth = 575;
@@ -24,7 +23,7 @@ function Header(props) {
     <header className="header page__section">
       {props.loggedIn &&
         <div className={`header__info-wrap ${mobileResolution && "header__info-wrap_hidden"}`}>
-          <p className="header__user-email">{email}</p>
+          <p className="header__user-email">{props.email}</p>
           <button type="submit" name="submit" onClick={props.onSignOut} className="button header__button">Выйти</button>
         </div>
       }

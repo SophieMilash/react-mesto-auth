@@ -46,10 +46,14 @@ function Register(props) {
     auth.register(email, password)
       .then((res) => {
         if (res) {
+          props.onRegistrationSuccess();
           history.push('/sign-in');
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        props.onRegistrationError();
+        console.log(err);
+      });
   }
 
   return (
