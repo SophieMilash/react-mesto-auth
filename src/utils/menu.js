@@ -16,7 +16,7 @@ export function switchClass() {
 
   if (window.innerWidth <= mobileWidth && headerInfoWrap) {
     headerInfoWrap.classList.add('header__info-wrap_hidden');
-  } else if (window.innerWidth > mobileWidth && headerInfoWrap.classList.contains('header__info-wrap_hidden')) {
+  } else if (window.innerWidth > mobileWidth && headerInfoWrap && headerInfoWrap.classList.contains('header__info-wrap_hidden')) {
     headerInfoWrap.classList.remove('header__info-wrap_hidden');
   } else if (headerBurgerLineActive) {
     headerBurgerLines.forEach(line => {
