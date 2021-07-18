@@ -20,14 +20,12 @@ function Header(props) {
     menu.toggleHeaderBurger();
   }
 
-  // onClick={props.onSignOut}
-
   return (
     <header className="header page__section">
       {props.loggedIn &&
         <div className={`header__info-wrap ${mobileResolution && "header__info-wrap_hidden"}`}>
           <p className="header__user-email">{email}</p>
-          <button type="submit" name="submit" className="button header__button">Выйти</button>
+          <button type="submit" name="submit" onClick={props.onSignOut} className="button header__button">Выйти</button>
         </div>
       }
       <a href="#" target="_self">

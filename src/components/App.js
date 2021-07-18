@@ -187,11 +187,17 @@ function App() {
     history.push('/');
   }
 
+  function handleSignOut() {
+    history.push('/sign-in');
+    setUserEmail('');
+    setLoggedIn(false);
+    localStorage.removeItem('jwt');
+  }
+
   return (
     <>
-     {/* onSignOut={} */}
       <CurrentUserContext.Provider value={currentUser}>
-        <Header loggedIn={loggedIn} email={userEmail} />
+        <Header loggedIn={loggedIn} onSignOut={handleSignOut} email={userEmail} />
         <Switch>
           <ProtectedRoute exact path="/" loggedIn={loggedIn} component={Main}
             onEditAvatar={handleEditAvatarClick}
