@@ -44,5 +44,4 @@ export const checkToken = (token) => {
     }
   })
   .then(checkResponse);
-  // .then(data => data);
 }

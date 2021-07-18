@@ -5,14 +5,17 @@ import headerLogo from '../images/logo.svg';
 import * as menu from '../utils/menu.js';
 
 function Header(props) {
-  const [mobileResolution, setMobileResolution] = React.useState(false);
   const location = useLocation();
-  const mobileWidth = 575;
 
-  function checkInnerWidth() {
-    if (window.innerWidth <= mobileWidth) {
-      setMobileResolution(true);
-    }
+  React.useEffect(() => {
+    switchClass();
+    window.addEventListener('resize', () => {
+      switchClass();
+    });
+  }, []);
+
+  function switchClass() {
+    menu.switchClass();
   }
 
   function handleHeaderBurgerClick() {
@@ -22,7 +25,7 @@ function Header(props) {
   return (
     <header className="header page__section">
       {props.loggedIn &&
-        <div className={`header__info-wrap ${mobileResolution && "header__info-wrap_hidden"}`}>
+        <div className="header__info-wrap">
           <p className="header__user-email">{props.email}</p>
           <button type="submit" name="submit" onClick={props.onSignOut} className="button header__button">Выйти</button>
         </div>
@@ -33,9 +36,9 @@ function Header(props) {
 
       {props.loggedIn ?
         <button className="button header__burger" onClick={handleHeaderBurgerClick} >
-          <span className="header__burger-line header__burger-line_active"></span>
-          <span className="header__burger-line header__burger-line_active"></span>
-          <span className="header__burger-line header__burger-line_active"></span>
+          <span className="header__burger-line"></span>
+          <span className="header__burger-line"></span>
+          <span className="header__burger-line"></span>
         </button>
         : location.pathname === '/sign-in' ? (
         <nav>
