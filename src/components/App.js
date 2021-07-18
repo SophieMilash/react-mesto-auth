@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 import Header from './Header';
 import Footer from './Footer';
@@ -14,6 +14,7 @@ import CurrentUserContext from '../contexts/CurrentUserContext';
 import Register from './Register';
 import Login from './Login';
 import api from '../utils/api.js';
+import * as auth from '../utils/auth';
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -32,6 +33,8 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isFormLoading, setIsFormLoading] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [userEmail, setUserEmail] = React.useState('');
+  const history = useHistory();
 
   React.useEffect(() => {
     setIsLoading(true);
@@ -46,6 +49,14 @@ function App() {
       })
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
+
+    if (localStorage.getItem('jwt')) {
+      auth.checkToken(localStorage.getItem('jwt'))
+        .then((res) => {
+          handleLogin(res.data.email);
+        })
+        .catch((err) => console.log(err));
+    }
   }, []);
 
   React.useEffect(() => {
@@ -170,14 +181,17 @@ function App() {
       .finally(() => setIsFormLoading(false));
   }
 
-  function handleLogin(e) {
+  function handleLogin(email) {
     setLoggedIn(true);
+    setUserEmail(email);
+    history.push('/');
   }
 
   return (
     <>
+     {/* onSignOut={} */}
       <CurrentUserContext.Provider value={currentUser}>
-        <Header />
+        <Header loggedIn={loggedIn} email={userEmail} />
         <Switch>
           <ProtectedRoute exact path="/" loggedIn={loggedIn} component={Main}
             onEditAvatar={handleEditAvatarClick}
@@ -194,7 +208,7 @@ function App() {
             <Register />
           </Route>
           <Route path="/sign-in">
-            <Login handleLogin={handleLogin} />
+            <Login onLogin={handleLogin} />
           </Route>
         </Switch>
         <Footer />

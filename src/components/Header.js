@@ -1,12 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import headerLogo from '../images/logo.svg';
 import * as menu from '../utils/menu.js';
 
 function Header(props) {
-  // let { email} = props.userData;
+  const email = props.email;
   const [mobileResolution, setMobileResolution] = React.useState(false);
+  const location = useLocation();
   const mobileWidth = 575;
 
   function checkInnerWidth() {
@@ -19,11 +20,13 @@ function Header(props) {
     menu.toggleHeaderBurger();
   }
 
+  // onClick={props.onSignOut}
+
   return (
     <header className="header page__section">
       {props.loggedIn &&
         <div className={`header__info-wrap ${mobileResolution && "header__info-wrap_hidden"}`}>
-          <p className="header__user-email">email@mail.com</p>
+          <p className="header__user-email">{email}</p>
           <button type="submit" name="submit" className="button header__button">Выйти</button>
         </div>
       }
@@ -37,7 +40,7 @@ function Header(props) {
           <span className="header__burger-line header__burger-line_active"></span>
           <span className="header__burger-line header__burger-line_active"></span>
         </button>
-        :
+        : location.pathname === '/sign-in' ? (
         <nav>
           <ul className="header__menu">
             <li>
@@ -45,6 +48,15 @@ function Header(props) {
             </li>
           </ul>
         </nav>
+        ) : (
+        <nav>
+          <ul className="header__menu">
+            <li>
+              <Link to="/sign-in" className="header__link">Вход</Link>
+            </li>
+          </ul>
+        </nav>
+        )
       }
     </header>
   )

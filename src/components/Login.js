@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from "react-router-dom";
 import AuthorizationForm from './AuthorizationForm';
 import * as auth from '../utils/auth';
 
@@ -10,7 +9,6 @@ function Login(props) {
   const [passwordValidityError, setPasswordValidityError] = React.useState('');
   // const [isSubmitDisabled, setIsSubmitDisabled] = React.useState(true);
   const isSubmitDisabled = emailValidityError || passwordValidityError;
-  const history = useHistory();
 
   function handleEmailChange(e) {
     const emailInput = e.target;
@@ -52,10 +50,12 @@ function Login(props) {
     e.preventDefault();
 
     auth.authorize(email, password)
-      .then((data) => {
-        if (data.token){
-          props.handleLogin();
-          history.push('/');
+      .then((res) => {
+        if (res.token){
+          localStorage.setItem('jwt', res.token);
+          auth.checkToken(res.token).then((res) => {
+            props.onLogin(res.data.email);
+          });
         }
       })
       .catch(err => console.log(err));

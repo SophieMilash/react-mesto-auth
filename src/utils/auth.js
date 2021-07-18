@@ -15,11 +15,7 @@ export const register = (email, password) => {
     },
     body: JSON.stringify({ email, password })
   })
-    .then(checkResponse)
-    .then((res) => {
-      return res;
-    })
-    .catch((err) => console.log(err));
+    .then(checkResponse);
 };
 
 export const authorize = (email, password) => {
@@ -36,6 +32,17 @@ export const authorize = (email, password) => {
         localStorage.setItem('token', data.token);
         return data;
       }
-    })
-    .catch((err) => console.log(err));
+    });
 };
+
+export const checkToken = (token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    }
+  })
+  .then(checkResponse);
+  // .then(data => data);
+}
