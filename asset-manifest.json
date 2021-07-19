@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/mesto-react-auth/static/css/main.8e6c6b43.chunk.css",
-    "main.js": "/mesto-react-auth/static/js/main.808784b1.chunk.js",
-    "main.js.map": "/mesto-react-auth/static/js/main.808784b1.chunk.js.map",
+    "main.js": "/mesto-react-auth/static/js/main.ab307011.chunk.js",
+    "main.js.map": "/mesto-react-auth/static/js/main.ab307011.chunk.js.map",
     "runtime-main.js": "/mesto-react-auth/static/js/runtime-main.efa5cf3c.js",
     "runtime-main.js.map": "/mesto-react-auth/static/js/runtime-main.efa5cf3c.js.map",
-    "static/js/2.5d9e5521.chunk.js": "/mesto-react-auth/static/js/2.5d9e5521.chunk.js",
-    "static/js/2.5d9e5521.chunk.js.map": "/mesto-react-auth/static/js/2.5d9e5521.chunk.js.map",
+    "static/js/2.3b10695d.chunk.js": "/mesto-react-auth/static/js/2.3b10695d.chunk.js",
+    "static/js/2.3b10695d.chunk.js.map": "/mesto-react-auth/static/js/2.3b10695d.chunk.js.map",
     "static/js/3.4f10331c.chunk.js": "/mesto-react-auth/static/js/3.4f10331c.chunk.js",
     "static/js/3.4f10331c.chunk.js.map": "/mesto-react-auth/static/js/3.4f10331c.chunk.js.map",
     "index.html": "/mesto-react-auth/index.html",
     "static/css/main.8e6c6b43.chunk.css.map": "/mesto-react-auth/static/css/main.8e6c6b43.chunk.css.map",
-    "static/js/2.5d9e5521.chunk.js.LICENSE.txt": "/mesto-react-auth/static/js/2.5d9e5521.chunk.js.LICENSE.txt",
+    "static/js/2.3b10695d.chunk.js.LICENSE.txt": "/mesto-react-auth/static/js/2.3b10695d.chunk.js.LICENSE.txt",
     "static/media/index.css": "/mesto-react-auth/static/media/trash.2af49b82.svg",
     "static/media/error.d4ce2a26.svg": "/mesto-react-auth/static/media/error.d4ce2a26.svg",
     "static/media/logo.bbe2a6ea.svg": "/mesto-react-auth/static/media/logo.bbe2a6ea.svg",
@@ -19,8 +19,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.efa5cf3c.js",
-    "static/js/2.5d9e5521.chunk.js",
+    "static/js/2.3b10695d.chunk.js",
     "static/css/main.8e6c6b43.chunk.css",
-    "static/js/main.808784b1.chunk.js"
+    "static/js/main.ab307011.chunk.js"
   ]
 }
