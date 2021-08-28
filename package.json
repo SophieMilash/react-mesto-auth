@@ -19,8 +19,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "serve": "serve -s build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run build && scp -r ./build/* sophie@178.154.202.72:/home/sophie/mesto-frontend"
   },
   "eslintConfig": {
     "extends": [
